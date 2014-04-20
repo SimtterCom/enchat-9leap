@@ -1,7 +1,8 @@
-name = prompt("Input name:");
+name = window.prompt("Input name:");
 
-var port = 20105;
-var socket = io.connect("/", { port: port });
+//var port = 20105;
+//var socket = io.connect("/", { port: port });
+var socket = io.connect();
 
 socket.on("connect", function() {
   socket.emit("name", name);
