@@ -1,5 +1,5 @@
 {
-  "name": "enchant.js + node.js + socket.io",
+  "name": "enchat",
   "version": "0.0.0",
   "description": "enchant.jsとnode.jsとsocket.ioで作るMMORPG風チャット",
   "main": "enchat.js",
