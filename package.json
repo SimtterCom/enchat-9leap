@@ -2,7 +2,7 @@
   "name": "enchat",
   "version": "0.0.0",
   "description": "enchant.jsとnode.jsとsocket.ioで作るMMORPG風チャット",
-  "main": "server.js",
+  "main": "enchat.js",
   "repository": "",
   "author": "SimtterCom <info@simtter.com>",
   "dependencies": {
