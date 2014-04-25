@@ -2,9 +2,29 @@
   "name": "enchat",
   "version": "0.0.0",
   "description": "enchant.jsとnode.jsとsocket.ioで作るMMORPG風チャット",
+  "homepage": "http://blog.simtter.com",
+  "author": {
+    "name": "SimtterCom",
+    "email": "info@simtter.com"
+  },
+  "repository": {
+      "type": "git",
+      "url": "git://github.com/SimtterCom/enchat"
+  },
+  "bugs": {
+    "url": "https://github.com/SimtterCom/enchat/issues"
+  },
+  "licenses": {
+    "type": "GPL",
+    "url": "http://www.gnu.org/licenses/gpl.txt"
+  },
   "main": "enchat.js",
-  "repository": "",
-  "author": "SimtterCom <info@simtter.com>",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "install": "node enchat.js"
+  },
   "dependencies": {
     "express": "~3.2.4",
     "socket.io": "~0.9.14"
