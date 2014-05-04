@@ -1,6 +1,6 @@
 # enchant.js + node.js + socket.ioで作るMMORPG風チャット
 
-[node+socket.io+enchant.jsでチャットゲーを作る](http://www.slideshare.net/stealthinu/nodesocketioenchantjs)の[コード](https://github.com/stealthinu/enchat/)を最新のexpress(3.2.6以上)で動くようにした。  
+[enchant.js + node.js + socket.ioで作るMMORPG風チャット](https://github.com/SimtterCom/enchat)を[9leap](http://9leap.net/)で動くようにした。  
 [heroku](http://enchat-server.herokuapp.com/)で実際の動作を確認できます。
 
 ## Browser Support
