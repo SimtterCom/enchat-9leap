@@ -1,7 +1,7 @@
 {
-  "name": "enchat",
+  "name": "enchat-9leap",
   "version": "0.0.0",
-  "description": "enchant.jsとnode.jsとsocket.ioで作るMMORPG風チャット",
+  "description": "enchant.jsとnode.jsとsocket.ioで作るMMORPG風チャット(9leap動作用)",
   "homepage": "http://blog.simtter.com",
   "author": {
     "name": "SimtterCom",
@@ -9,10 +9,10 @@
   },
   "repository": {
       "type": "git",
-      "url": "git://github.com/SimtterCom/enchat"
+      "url": "git://github.com/SimtterCom/enchat-9leap"
   },
   "bugs": {
-    "url": "https://github.com/SimtterCom/enchat/issues"
+    "url": "https://github.com/SimtterCom/enchat-9leap/issues"
   },
   "licenses": {
     "type": "GPL",
@@ -20,13 +20,12 @@
   },
   "main": "enchat.js",
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 0.10.0"
   },
   "scripts": {
     "install": "node enchat.js"
   },
   "dependencies": {
-    "express": "~3.2.4",
     "socket.io": "~0.9.14"
   }
 }
