@@ -2,7 +2,8 @@
 
 [enchant.js + node.js + socket.ioで作るMMORPG風チャット](https://github.com/SimtterCom/enchat)を[9leap](http://9leap.net/)で動くようにした。  
 サーバーは[heroku](http://enchat-9leap.herokuapp.com/)で動作しています。  
-クライアントも含めた動作は[http://9leap.net/games/4053/](http://9leap.net/games/4053/)で確認できます。
+クライアントも含めた動作は[http://9leap.net/games/4053/](http://9leap.net/games/4053/)で確認できます。  
+クライアントのソースコードも[github](https://github.com/SimtterCom/enchat-9leap-client)にあげています。
 
 ## Browser Support
 
@@ -12,7 +13,7 @@ We support the newer versions of Chrome, Firefox, Safari and IE
 
 ### Requirements
 
-  * NodeJS `>= 0.6.16`
+  * NodeJS `>= 0.10.0`
   * socket.io `>= 0.9.16`
 
 ### Install and Usage
