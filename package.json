@@ -22,9 +22,6 @@
   "engines": {
     "node": ">= 0.10.0"
   },
-  "scripts": {
-    "install": "node enchat.js"
-  },
   "dependencies": {
     "socket.io": "~0.9.14"
   }
