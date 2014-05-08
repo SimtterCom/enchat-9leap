@@ -7,7 +7,7 @@ server.listen(process.env.PORT);
 io.set("log level", 1);
 console.log("Server started.");
 
-var player_list = new Array(); // ログイン中プレイヤー情報を名前から得る関数へのハッシュ
+var player_list = []; // ログイン中プレイヤー情報を名前から得る関数へのハッシュ
 
 // 通信プロトコル
 io.sockets.on("connection", function(socket) {
@@ -15,7 +15,8 @@ io.sockets.on("connection", function(socket) {
     login_name : "",
     x : 0,
     y : 0,
-    message : "…", // フキダシの中身
+    direction : 0,
+    message : "…" // フキダシの中身
   };
 
   console.log("connect new client.");
@@ -29,8 +30,12 @@ io.sockets.on("connection", function(socket) {
     for (var i in player_list) {
       var c = player_list[i]; // ログイン中プレイヤーリストからプレイヤー情報取得
       socket.emit("name", c.login_name);
-      socket.emit("position:" + c.login_name,
-                  c.x + "," + c.y + "," + c.direction);
+      var pos = {
+          x : c.x,
+          y : c.y,
+          direction : c.direction
+      };
+      socket.emit("position:" + c.login_name, pos);
       socket.emit("message:" + c.login_name, c.message);
     }
     // ログイン中プレイヤーリストへの登録
