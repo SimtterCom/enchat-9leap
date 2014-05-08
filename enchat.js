@@ -7,62 +7,62 @@ server.listen(process.env.PORT);
 io.set("log level", 1);
 console.log("Server started.");
 
-var player_list = []; // ログイン中プレイヤー情報を名前から得る関数へのハッシュ
+var player_infos = {}; // ログイン中プレイヤー情報をSocket IDから得る関数へのハッシュ
 
 // 通信プロトコル
 io.sockets.on("connection", function(socket) {
-  var player = {
-    login_name : "",
-    x : 0,
-    y : 0,
-    direction : 0,
-    message : "…" // フキダシの中身
-  };
-
   console.log("connect new client.");
 
   // ログイン名を送ってきた時は新規ログインの処理
-  socket.on("name", function(text) {
-    console.log("name: " + text);
-    player.login_name = text;
-    socket.broadcast.emit("name", player.login_name);
+  socket.on("name", function(player_info) {
+    console.log("name: " + player_info.login_name);
+    if(player_infos[socket.id]) {    // すでに登録済み
+        return;
+    }
+    socket.broadcast.emit("name", player_info);
     // それまでにログインしてるプレイヤー情報を送る
-    for (var i in player_list) {
-      var c = player_list[i]; // ログイン中プレイヤーリストからプレイヤー情報取得
-      socket.emit("name", c.login_name);
-      var pos = {
-          x : c.x,
-          y : c.y,
-          direction : c.direction
-      };
-      socket.emit("position:" + c.login_name, pos);
-      socket.emit("message:" + c.login_name, c.message);
+    for (var i in player_infos) {
+      var other_player_info = player_infos[i]; // ログイン中プレイヤーリストからプレイヤー情報取得
+      console.log("other_player_info name: " + other_player_info.login_name);
+      socket.emit("name", other_player_info);
     }
     // ログイン中プレイヤーリストへの登録
-    player_list[ player.login_name ] = player;
+    player_infos[socket.id] = player_info;
   });
   
   // 移動処理
   socket.on("position", function(pos) {
+    var player_info = player_infos[socket.id];
+    if(!player_info) {   // 登録されていない
+        return;
+    }
     // console.log("position:" + player.login_name + " " + text);
-    player.x = pos.x;
-    player.y = pos.y;
-    player.direction = pos.direction;
-    socket.broadcast.emit("position:" + player.login_name, pos);
+    player_info.x = pos.x;
+    player_info.y = pos.y;
+    player_info.direction = pos.direction;
+    socket.broadcast.emit("position:" + player_info.login_name, pos);
   });
 
   // こちらがメッセージを受けた時の処理
   socket.on("message", function(text) {
-    console.log("message:" + player.login_name + " " + text);
-    player.message = text;
-    socket.broadcast.emit("message:" + player.login_name, text);
+    var player_info = player_infos[socket.id];
+    if(!player_info) {   // 登録されていない
+        return;
+    }
+    console.log("message:" + player_info.login_name + " " + text);
+    player_info.message = text;
+    socket.broadcast.emit("message:" + player_info.login_name, text);
   });
 
   // 切断した時の処理
   socket.on("disconnect", function() {
-    console.log("disconnect:" + player.login_name);
-    socket.broadcast.emit("disconnect:" + player.login_name);
+    var player_info = player_infos[socket.id];
+    if(!player_info) {   // 登録されていない
+        return;
+    }
+    console.log("disconnect:" + player_info.login_name);
+    socket.broadcast.emit("disconnect:" + player_info.login_name);
     // ログイン中プレイヤーリストからの削除
-    delete player_list[ player.login_name ];
+    delete player_infos[socket.id];
   });
 });
