@@ -54,6 +54,17 @@ io.sockets.on("connection", function(socket) {
     socket.broadcast.emit("message:" + player_info.id, text);
   });
 
+  // プレイヤー画像変更
+  socket.on("setImage", function(imageUrl) {
+    var player_info = player_infos[socket.id];
+    if(!player_info) {   // 登録されていない
+        return;
+    }
+    console.log("id:" + player_info.id + ", name:" + player_info.login_name + ", imageUrl:" + imageUrl);
+    player_info.imageUrl = imageUrl;
+    socket.broadcast.emit("setImage:" + player_info.id, imageUrl);
+  });
+
   // 切断した時の処理
   socket.on("disconnect", function() {
     var player_info = player_infos[socket.id];
